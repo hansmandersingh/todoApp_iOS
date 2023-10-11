@@ -17,22 +17,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
-    
     self.title = @"todoList";
     
     UITextField *textBox = [[UITextField alloc] init];
     textBox.backgroundColor = [UIColor lightGrayColor];
     textBox.borderStyle = UITextBorderStyleRoundedRect;
     textBox.textColor = [UIColor whiteColor];
-    textBox.text = @"Please enter a todo task";
+    textBox.placeholder = @"Please enter a todo";
     textBox.textAlignment = NSTextAlignmentCenter;
     textBox.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:textBox];
     
-    [textBox.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:10].active = YES;
+    [self addConstraints:textBox];
+}
+
+-(void)addConstraints: (UITextField *)textBox {
+    [textBox.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:17].active = YES;
     [textBox.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor].active = YES;
-    [textBox.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor  constant:-10].active = YES;
+    [textBox.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor  constant:-17].active = YES;
 }
 
 
