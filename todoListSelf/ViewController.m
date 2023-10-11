@@ -8,7 +8,11 @@
 #import "ViewController.h"
 
 
-@interface ViewController ()
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource> {
+    NSMutableArray *arr;
+}
+
+@property (nonatomic) UITableView *table;
 
 @end
 
@@ -18,7 +22,9 @@
     [super viewDidLoad];
     
     self.title = @"todoList";
+    arr = [[NSMutableArray alloc]initWithObjects:@"ABC",@"XYZ", nil];
     
+    //textField to enter text for todo
     UITextField *textBox = [[UITextField alloc] init];
     textBox.backgroundColor = [UIColor lightGrayColor];
     textBox.borderStyle = UITextBorderStyleRoundedRect;
@@ -28,14 +34,57 @@
     textBox.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:textBox];
     
-    [self addConstraints:textBox];
+    [textBox addTarget:self action:@selector(byPressingEnter:) forControlEvents:UIControlEventEditingDidEndOnExit];
+    
+    //tableview to add todo to
+    self.table = [[UITableView alloc] init];
+    
+    self.table.delegate = self;
+    self.table.dataSource = self;
+    self.table.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [self.view addSubview:self.table];
+    
+    [self addConstraints:textBox withTable:self.table];
 }
 
--(void)addConstraints: (UITextField *)textBox {
+-(void)addConstraints: (UITextField *)textBox withTable: (UITableView *)table {
+    //for textField
     [textBox.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:17].active = YES;
     [textBox.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor].active = YES;
     [textBox.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor  constant:-17].active = YES;
+    
+    //for table
+    [table.topAnchor constraintEqualToAnchor:textBox.bottomAnchor constant: 10].active = YES;
+    [table.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:17].active = YES;
+    [table.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-17].active = YES;
+    [table.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor constant:-10].active = YES;
+    
 }
 
+-(void)byPressingEnter:(UITextField *) textField {
+    [arr addObject:textField.text];
+    textField.text = @"";
+    [self.table reloadData];
+    [self resignFirstResponder];
+}
 
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyCell"];
+    
+    if(cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyCell"];
+    }
+    
+    cell.textLabel.text = [arr objectAtIndex:indexPath.row];
+    return cell;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section { 
+    return arr.count;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%ld", (long)indexPath.row);
+}
 @end
