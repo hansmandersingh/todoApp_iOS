@@ -9,7 +9,7 @@
 
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource> {
-    NSMutableArray *arr;
+    NSMutableArray *todoArray;
 }
 
 @property (nonatomic) UITableView *table;
@@ -22,7 +22,7 @@
     [super viewDidLoad];
     
     self.title = @"todoList";
-    arr = [[NSMutableArray alloc]initWithObjects:@"ABC",@"XYZ", nil];
+    todoArray = [[NSMutableArray alloc]initWithObjects:@"ABC",@"XYZ", nil];
     
     //textField to enter text for todo
     UITextField *textBox = [[UITextField alloc] init];
@@ -63,7 +63,7 @@
 }
 
 -(void)byPressingEnter:(UITextField *) textField {
-    [arr addObject:textField.text];
+    [todoArray addObject:textField.text];
     textField.text = @"";
     [self.table reloadData];
     [self resignFirstResponder];
@@ -76,12 +76,12 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyCell"];
     }
     
-    cell.textLabel.text = [arr objectAtIndex:indexPath.row];
+    cell.textLabel.text = [todoArray objectAtIndex:indexPath.row];
     return cell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section { 
-    return arr.count;
+    return todoArray.count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
