@@ -117,17 +117,31 @@
 - (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UIContextualAction *deleteAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"Delete" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
-            NSLog(@"------------------>%@",sourceView);
         [self tableView:tableView commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:indexPath];
-            completionHandler (YES);
+        completionHandler (YES);
     }];
     
     UIContextualAction *editAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"Edit" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
             NSLog(@"------------------>%@",sourceView);
+        UIAlertController *newText = [UIAlertController alertControllerWithTitle:@"Change Todo" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        [newText addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+            textField.text = [self->todoArray objectAtIndex:indexPath.row];
+        }];
+        
+        UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"Confirm" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            if(![[newText.textFields[0] text] isEqualToString:@""]) {
+                [self->todoArray replaceObjectAtIndex:indexPath.row withObject:[newText.textFields[0] text]];
+                [tableView reloadData];
+            }
+        }];
+        [newText addAction:confirm];
+        [self presentViewController:newText animated:YES completion:nil];
+        
+        
         
             completionHandler (YES);
     }];
-    editAction.backgroundColor = [UIColor cyanColor];
+    editAction.backgroundColor = [UIColor systemGreenColor];
     
     UISwipeActionsConfiguration *config = [UISwipeActionsConfiguration configurationWithActions:@[deleteAction,editAction]];
         
