@@ -56,8 +56,8 @@
     
     //for table
     [table.topAnchor constraintEqualToAnchor:textBox.bottomAnchor constant: 10].active = YES;
-    [table.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:17].active = YES;
-    [table.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-17].active = YES;
+    [table.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:9].active = YES;
+    [table.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor constant:-17].active = YES;
     [table.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor constant:-10].active = YES;
     
 }
