@@ -74,6 +74,16 @@
 
 -(void)byPressingEnter:(UITextField *) textField {
     [todoArray addObject:textField.text];
+    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:[todoArray count]-1 inSection:0];
+    [_table beginUpdates];
+    [_table insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [_table endUpdates];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSIndexPath *bottomIndexPath = [NSIndexPath indexPathForRow:self->todoArray.count-1 inSection:0];
+        [self.table scrollToRowAtIndexPath:bottomIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    });
+    
     textField.text = @"";
     [self.table reloadData];
     [self resignFirstResponder];
