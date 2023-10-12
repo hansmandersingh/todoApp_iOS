@@ -21,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationController.navigationBar.prefersLargeTitles = YES;
     self.title = @"todoList";
     todoArray = [[NSMutableArray alloc]initWithObjects:@"ABC",@"XYZ", nil];
     
@@ -45,11 +46,13 @@
     //Adding Edit button
     UIBarButtonItem *EditButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(isEditingTable:)];
     [self.navigationItem setRightBarButtonItem:EditButton];
+    
     [self.view addSubview:self.table];
     
     [self addConstraints:textBox withTable:self.table];
 }
 
+//Checks if table is editing
 -(void)isEditingTable:(UIBarButtonItem *)item {
     if(![_table isEditing]) {
         item.title = @"Done";
@@ -109,6 +112,26 @@
         [todoArray removeObjectAtIndex:indexPath.row];
         [tableView reloadData];
     }
+}
+
+- (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UIContextualAction *deleteAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"Delete" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+            NSLog(@"------------------>%@",sourceView);
+        [self tableView:tableView commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:indexPath];
+            completionHandler (YES);
+    }];
+    
+    UIContextualAction *editAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"Edit" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+            NSLog(@"------------------>%@",sourceView);
+        
+            completionHandler (YES);
+    }];
+    editAction.backgroundColor = [UIColor cyanColor];
+    
+    UISwipeActionsConfiguration *config = [UISwipeActionsConfiguration configurationWithActions:@[deleteAction,editAction]];
+        
+    return config;
 }
 
 @end
