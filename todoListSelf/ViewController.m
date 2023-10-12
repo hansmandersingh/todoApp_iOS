@@ -42,10 +42,22 @@
     self.table.delegate = self;
     self.table.dataSource = self;
     self.table.translatesAutoresizingMaskIntoConstraints = NO;
-    
+    //Adding Edit button
+    UIBarButtonItem *EditButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(isEditingTable:)];
+    [self.navigationItem setRightBarButtonItem:EditButton];
     [self.view addSubview:self.table];
     
     [self addConstraints:textBox withTable:self.table];
+}
+
+-(void)isEditingTable:(UIBarButtonItem *)item {
+    if(![_table isEditing]) {
+        item.title = @"Done";
+        [_table setEditing:YES animated:YES];
+    } else {
+        item.title = @"Edit";
+        [_table setEditing:NO animated:YES];
+    }
 }
 
 -(void)addConstraints: (UITextField *)textBox withTable: (UITableView *)table {
@@ -87,4 +99,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%ld", (long)indexPath.row);
 }
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [todoArray removeObjectAtIndex:indexPath.row];
+        [tableView reloadData];
+    }
+}
+
 @end
