@@ -13,6 +13,7 @@
 		D621A3B32AD75784007FFEDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D621A3B22AD75784007FFEDE /* Assets.xcassets */; };
 		D621A3B62AD75784007FFEDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D621A3B42AD75784007FFEDE /* LaunchScreen.storyboard */; };
 		D621A3B92AD75784007FFEDE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D621A3B82AD75784007FFEDE /* main.m */; };
+		D621A3C12AD82AAE007FFEDE /* CustomTodo.m in Sources */ = {isa = PBXBuildFile; fileRef = D621A3C02AD82AAE007FFEDE /* CustomTodo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,8 @@
 		D621A3B52AD75784007FFEDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D621A3B72AD75784007FFEDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D621A3B82AD75784007FFEDE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D621A3BF2AD82AAD007FFEDE /* CustomTodo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTodo.h; sourceTree = "<group>"; };
+		D621A3C02AD82AAE007FFEDE /* CustomTodo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTodo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +72,8 @@
 				D621A3B42AD75784007FFEDE /* LaunchScreen.storyboard */,
 				D621A3B72AD75784007FFEDE /* Info.plist */,
 				D621A3B82AD75784007FFEDE /* main.m */,
+				D621A3BF2AD82AAD007FFEDE /* CustomTodo.h */,
+				D621A3C02AD82AAE007FFEDE /* CustomTodo.m */,
 			);
 			path = todoListSelf;
 			sourceTree = "<group>";
@@ -142,6 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D621A3C12AD82AAE007FFEDE /* CustomTodo.m in Sources */,
 				D621A3AE2AD75782007FFEDE /* ViewController.m in Sources */,
 				D621A3A82AD75782007FFEDE /* AppDelegate.m in Sources */,
 				D621A3B92AD75784007FFEDE /* main.m in Sources */,

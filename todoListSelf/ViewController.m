@@ -6,7 +6,7 @@
 //
 
 #import "ViewController.h"
-
+#import "CustomTodo.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource> {
     NSMutableArray *todoArray;
@@ -85,13 +85,13 @@
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyCell"];
+    CustomTodo *cell = (CustomTodo *)[tableView dequeueReusableCellWithIdentifier:@"MyCell"];
     
     if(cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyCell"];
+        cell = [[CustomTodo alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyCell"];
     }
     
-    cell.textLabel.text = [todoArray objectAtIndex:indexPath.row];
+    cell.todoName.text = [todoArray objectAtIndex:indexPath.row];
     return cell;
 }
 
