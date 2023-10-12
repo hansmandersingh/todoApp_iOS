@@ -24,7 +24,7 @@
 
 -(void)todoNameConstraints:(UILabel *)todoName {
     [todoName.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:10].active = YES;
-    [todoName.topAnchor constraintEqualToAnchor:self.topAnchor constant:5].active = YES;
+    [todoName.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:5].active = YES;
     [todoName.heightAnchor constraintEqualToConstant:30].active = YES;
 }
 
