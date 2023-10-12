@@ -15,7 +15,7 @@
     if (self) {
         self.todoName = [[UILabel alloc] init];
         self.todoName.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:self.todoName];
+        [self.contentView addSubview:self.todoName];
         
         [self todoNameConstraints:_todoName];
     }
@@ -23,9 +23,8 @@
 }
 
 -(void)todoNameConstraints:(UILabel *)todoName {
-    [todoName.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:10].active = YES;
+    [todoName.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:10].active = YES;
     [todoName.topAnchor constraintEqualToAnchor:self.topAnchor constant:5].active = YES;
-    [todoName.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-5].active = YES;
     [todoName.heightAnchor constraintEqualToConstant:30].active = YES;
 }
 

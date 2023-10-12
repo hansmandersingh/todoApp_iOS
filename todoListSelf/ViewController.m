@@ -44,23 +44,18 @@
     self.table.dataSource = self;
     self.table.translatesAutoresizingMaskIntoConstraints = NO;
     //Adding Edit button
-    UIBarButtonItem *EditButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(isEditingTable:)];
-    [self.navigationItem setRightBarButtonItem:EditButton];
+    
+    self.navigationItem.rightBarButtonItem = [self editButtonItem];
     
     [self.view addSubview:self.table];
     
     [self addConstraints:textBox withTable:self.table];
 }
 
-//Checks if table is editing
--(void)isEditingTable:(UIBarButtonItem *)item {
-    if(![_table isEditing]) {
-        item.title = @"Done";
-        [_table setEditing:YES animated:YES];
-    } else {
-        item.title = @"Edit";
-        [_table setEditing:NO animated:YES];
-    }
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    [super setEditing:editing animated:animated];
+
+    [_table setEditing:editing animated:animated];
 }
 
 -(void)addConstraints: (UITextField *)textBox withTable: (UITableView *)table {
