@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CustomTodo : UITableViewCell
 
 @property (nonatomic, retain) UILabel *todoName;
+@property (nonatomic,retain) UILabel *todoDescription;
 
 @end
 

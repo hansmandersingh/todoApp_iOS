@@ -10,6 +10,7 @@
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource> {
     NSMutableArray *todoArray;
+    NSMutableArray *todoDescriptionArray;
 }
 
 @property (nonatomic) UITableView *table;
@@ -24,6 +25,7 @@
     self.navigationController.navigationBar.prefersLargeTitles = YES;
     self.title = @"todoList";
     todoArray = [[NSMutableArray alloc]initWithObjects:@"ABC",@"XYZ", nil];
+    todoDescriptionArray = [[NSMutableArray alloc] initWithObjects:@"First three letters", @"last three letters", nil];
     
     //textField to enter text for todo
     UITextField *textBox = [[UITextField alloc] init];
@@ -74,6 +76,7 @@
 
 -(void)byPressingEnter:(UITextField *) textField {
     [todoArray addObject:textField.text];
+    [todoDescriptionArray addObject:@""];
     NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:[todoArray count]-1 inSection:0];
     [_table beginUpdates];
     [_table insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -97,7 +100,12 @@
     }
     
     cell.todoName.text = [todoArray objectAtIndex:indexPath.row];
+    cell.todoDescription.text = [todoDescriptionArray objectAtIndex:indexPath.row];
     return cell;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section { 
@@ -115,6 +123,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [todoArray removeObjectAtIndex:indexPath.row];
+        [todoDescriptionArray removeObjectAtIndex:indexPath.row];
         
         [tableView beginUpdates];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
