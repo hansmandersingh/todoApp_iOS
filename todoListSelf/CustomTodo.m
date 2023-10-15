@@ -14,10 +14,12 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.todoName = [[UILabel alloc] init];
+        self.todoName.font = [UIFont boldSystemFontOfSize:19];
         self.todoName.translatesAutoresizingMaskIntoConstraints = NO;
         [self.contentView addSubview:self.todoName];
         
         self.todoDescription = [[UILabel alloc] init];
+        self.todoDescription.font = [UIFont systemFontOfSize:15];
         self.todoDescription.translatesAutoresizingMaskIntoConstraints = NO;
         [self.contentView addSubview:self.todoDescription];
         

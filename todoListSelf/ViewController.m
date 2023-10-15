@@ -14,6 +14,7 @@
 }
 
 @property (nonatomic) UITableView *table;
+@property (nonatomic, retain) UIButton * addButton;
 
 @end
 
@@ -51,7 +52,21 @@
     
     [self.view addSubview:self.table];
     
-    [self addConstraints:textBox withTable:self.table];
+    //Adding plus Button here
+    self.addButton = [[UIButton alloc] init];
+    self.addButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.addButton setTitle:@"+" forState:UIControlStateNormal];
+    self.addButton.backgroundColor = [UIColor systemBlueColor];
+    self.addButton.titleLabel.backgroundColor = [UIColor systemBlueColor];
+    self.addButton.layer.cornerRadius = 32;
+    [self.addButton.titleLabel setFont:[UIFont systemFontOfSize:40]];
+    self.addButton.titleLabel.numberOfLines = 0;
+    [self.addButton.titleLabel setAdjustsFontSizeToFitWidth:YES];
+    self.addButton.titleLabel.lineBreakMode = NSLineBreakByClipping;
+    
+    [self.view addSubview:self.addButton];
+    
+    [self addConstraints:textBox withTable:self.table withButton:self.addButton];
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
@@ -60,7 +75,7 @@
     [_table setEditing:editing animated:animated];
 }
 
--(void)addConstraints: (UITextField *)textBox withTable: (UITableView *)table {
+-(void)addConstraints: (UITextField *)textBox withTable: (UITableView *)table withButton:(UIButton *)addButton {
     //for textField
     [textBox.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:17].active = YES;
     [textBox.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor].active = YES;
@@ -72,6 +87,11 @@
     [table.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor constant:-17].active = YES;
     [table.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor constant:-10].active = YES;
     
+    //for add button
+    [addButton.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor constant:-15].active = YES;
+    [addButton.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-15].active = YES;
+    [addButton.widthAnchor constraintEqualToConstant:70].active = YES;
+    [addButton.heightAnchor constraintEqualToConstant:70].active = YES;
 }
 
 -(void)byPressingEnter:(UITextField *) textField {
