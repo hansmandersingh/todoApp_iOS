@@ -34,7 +34,7 @@
     textBox.placeholder = @"Please enter a todo";
     textBox.textAlignment = NSTextAlignmentCenter;
     textBox.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:textBox];
+    //[self.view addSubview:textBox];
     
     [textBox addTarget:self action:@selector(byPressingEnter:) forControlEvents:UIControlEventEditingDidEndOnExit];
     
@@ -76,12 +76,10 @@
 
 -(void)addConstraints: (UITextField *)textBox withTable: (UITableView *)table withButton:(UIButton *)addButton {
     //for textField
-    [textBox.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:17].active = YES;
-    [textBox.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor].active = YES;
-    [textBox.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor  constant:-17].active = YES;
+    
     
     //for table
-    [table.topAnchor constraintEqualToAnchor:textBox.bottomAnchor constant: 10].active = YES;
+    [table.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant: 10].active = YES;
     [table.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:9].active = YES;
     [table.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor constant:-17].active = YES;
     [table.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor constant:-10].active = YES;
@@ -185,10 +183,14 @@
         [newText addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
             textField.text = [self->todoArray objectAtIndex:indexPath.row];
         }];
+        [newText addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+            textField.text = [self->todoDescriptionArray objectAtIndex:indexPath.row];
+        }];
         
         UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"Confirm" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             if(![[newText.textFields[0] text] isEqualToString:@""]) {
                 [self->todoArray replaceObjectAtIndex:indexPath.row withObject:[newText.textFields[0] text]];
+                [self->todoDescriptionArray replaceObjectAtIndex:indexPath.row withObject:[newText.textFields[1] text]];
                 [tableView reloadData];
             }
         }];
