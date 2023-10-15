@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, retain) UITextField *todoTitleField;
 @property (nonatomic, retain) UITextView *todoDescriptionView;
 @property (nonatomic, retain) UITextField *todoDescriptionField;
+@property (nonatomic, retain) UIButton *addButton;
 
 @end
 

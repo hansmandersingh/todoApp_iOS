@@ -26,23 +26,44 @@
     
     //Added title Field
     _todoTitleField = [[UITextField alloc] init];
-    _todoTitleField.backgroundColor = [UIColor lightGrayColor];
-    _todoTitleField.borderStyle = UITextBorderStyleRoundedRect;
-    _todoTitleField.textColor = [UIColor whiteColor];
-    _todoTitleField.placeholder = @"Please enter a todo";
-    _todoTitleField.textAlignment = NSTextAlignmentCenter;
-    _todoTitleField.translatesAutoresizingMaskIntoConstraints = NO;
+    _todoTitleField = [self createATextField:_todoTitleField withPlaceholder:@"Enter a todo title"];
     [self.view addSubview:_todoTitleField];
     
     //Added Description View
     _todoDescriptionView = [self createATextView:@"Add a description: "];
     [self.view addSubview:_todoDescriptionView];
     
+    //Added description Field
+    _todoDescriptionField = [[UITextField alloc] init];
+    _todoDescriptionField = [self createATextField:_todoDescriptionField withPlaceholder:@"Please enter a description"];
+    [self.view addSubview:_todoDescriptionField];
     
-    [self addConstraints:_todoTitleField withTitle:_todoTitleView withDescriptionView:_todoDescriptionView];
+    //AddButton
+    _addButton = [[UIButton alloc] init];
+    [_addButton setTitle:@"Add" forState:UIControlStateNormal];
+    _addButton.titleLabel.textColor = [UIColor whiteColor];
+    _addButton.titleLabel.font = [UIFont boldSystemFontOfSize:22];
+    _addButton.backgroundColor = [UIColor systemBlueColor];
+    _addButton.layer.cornerRadius = 10;
+    //_addButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    _addButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:_addButton];
+    
+    [self addConstraints:_todoTitleField withTitle:_todoTitleView withDescriptionView:_todoDescriptionView withDescriptionTextField:_todoDescriptionField withButton:_addButton];
     
     NSString *isitWorking = @"chall pya";
     [self.delegate addItemViewController:self didFinishEnteringItem:isitWorking];
+}
+
+-(UITextField *)createATextField:(UITextField *) returningTextField withPlaceholder: (NSString *)text {
+    returningTextField.backgroundColor = [UIColor lightGrayColor];
+    returningTextField.borderStyle = UITextBorderStyleRoundedRect;
+    returningTextField.textColor = [UIColor whiteColor];
+    returningTextField.placeholder = text;
+    returningTextField.textAlignment = NSTextAlignmentCenter;
+    returningTextField.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    return returningTextField;
 }
 
 -(UITextView *)createATextView:(NSString *)text {
@@ -62,7 +83,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)addConstraints:(UITextField *)todoTitleField withTitle:(UITextView *)todoTitleView withDescriptionView:(UITextView *)todoDescriptionView {
+-(void)addConstraints:(UITextField *)todoTitleField withTitle:(UITextView *)todoTitleView withDescriptionView:(UITextView *)todoDescriptionView withDescriptionTextField: (UITextField *)todoDescriptionField withButton:(UIButton *)addButton {
     //todoView
     [todoTitleView.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:17].active = YES;
     [todoTitleView.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor constant:-17].active = YES;
@@ -76,6 +97,14 @@
     [todoDescriptionView.topAnchor constraintEqualToAnchor:todoTitleField.bottomAnchor constant:10].active = YES;
     [todoDescriptionView.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:17].active= YES;
     [todoDescriptionView.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor constant:-17].active = YES;
+    
+    [todoDescriptionField.topAnchor constraintEqualToAnchor:todoDescriptionView.bottomAnchor constant:10].active = YES;
+    [todoDescriptionField.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:17].active = YES;
+    [todoDescriptionField.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor constant:-17].active = YES;
+    
+    [addButton.topAnchor constraintEqualToAnchor:_todoDescriptionField.bottomAnchor constant:10].active = YES;
+    [addButton.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+    [addButton.widthAnchor constraintEqualToConstant:70].active = YES;
 }
 
 
