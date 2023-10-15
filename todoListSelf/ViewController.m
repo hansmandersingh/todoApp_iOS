@@ -6,12 +6,10 @@
 //
 
 #import "ViewController.h"
+#import "NewTodo.h"
 #import "CustomTodo.h"
 
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource> {
-    NSMutableArray *todoArray;
-    NSMutableArray *todoDescriptionArray;
-}
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,NewTodoDelegate> 
 
 @property (nonatomic) UITableView *table;
 @property (nonatomic, retain) UIButton * addButton;
@@ -63,6 +61,7 @@
     self.addButton.titleLabel.numberOfLines = 0;
     [self.addButton.titleLabel setAdjustsFontSizeToFitWidth:YES];
     self.addButton.titleLabel.lineBreakMode = NSLineBreakByClipping;
+    [self.addButton addTarget:self action:@selector(buttonPressed) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:self.addButton];
     
@@ -92,6 +91,16 @@
     [addButton.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-15].active = YES;
     [addButton.widthAnchor constraintEqualToConstant:70].active = YES;
     [addButton.heightAnchor constraintEqualToConstant:70].active = YES;
+}
+
+- (void)addItemViewController:(NewTodo *)controller didFinishEnteringItem:(NSString *)item {
+    NSLog(@"%@",item);
+}
+
+-(void)buttonPressed{
+    NewTodo *newTodoPage = [[NewTodo alloc] init];
+    newTodoPage.delegate = self;
+    [self presentViewController:newTodoPage animated:YES completion:nil];
 }
 
 -(void)byPressingEnter:(UITextField *) textField {

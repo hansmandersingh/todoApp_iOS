@@ -6,9 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NewTodo.h"
 
-@interface ViewController : UIViewController
-
+@interface ViewController : UIViewController  {
+    NSMutableArray *todoArray;
+    NSMutableArray *todoDescriptionArray;
+}
 
 @end
 
