@@ -100,7 +100,11 @@
 -(void)buttonPressed{
     NewTodo *newTodoPage = [[NewTodo alloc] init];
     newTodoPage.delegate = self;
-    [self presentViewController:newTodoPage animated:YES completion:nil];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:newTodoPage];
+    
+    [self presentViewController:navController animated:YES completion:^{
+        
+    }];
 }
 
 -(void)byPressingEnter:(UITextField *) textField {

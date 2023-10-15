@@ -17,12 +17,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-
-
 @interface NewTodo : UIViewController
 
 @property (nonatomic, weak) id <NewTodoDelegate> delegate;
+@property (nonatomic, retain) UITextView *todoTitleView;
 @property (nonatomic, retain) UITextField *todoTitleField;
+@property (nonatomic, retain) UITextView *todoDescriptionView;
 @property (nonatomic, retain) UITextField *todoDescriptionField;
 
 @end
