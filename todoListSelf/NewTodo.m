@@ -45,14 +45,29 @@
     _addButton.titleLabel.font = [UIFont boldSystemFontOfSize:22];
     _addButton.backgroundColor = [UIColor systemBlueColor];
     _addButton.layer.cornerRadius = 10;
-    //_addButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [_addButton addTarget:self action:@selector(addButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     _addButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:_addButton];
     
     [self addConstraints:_todoTitleField withTitle:_todoTitleView withDescriptionView:_todoDescriptionView withDescriptionTextField:_todoDescriptionField withButton:_addButton];
     
-    NSString *isitWorking = @"chall pya";
-    [self.delegate addItemViewController:self didFinishEnteringItem:isitWorking];
+}
+
+-(void)addButtonPressed {
+    if (![_todoTitleField.text isEqual:@""]) {
+        NSString *title = _todoTitleField.text;
+        NSString *description;
+        
+        if ([_todoDescriptionField isEqual:@""]) {
+            description = @"";
+        } else {
+            description = _todoDescriptionField.text;
+        }
+        
+        [self.delegate addItemViewController:self todoTitle:title todoDescription:description];
+        
+        [self dismissVC];
+    }
 }
 
 -(UITextField *)createATextField:(UITextField *) returningTextField withPlaceholder: (NSString *)text {
@@ -80,6 +95,8 @@
 }
 
 -(void)dismissVC {
+    _todoTitleField.text = @"";
+    _todoDescriptionField.text = @"";
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

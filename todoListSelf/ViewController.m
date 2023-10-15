@@ -93,8 +93,11 @@
     [addButton.heightAnchor constraintEqualToConstant:70].active = YES;
 }
 
-- (void)addItemViewController:(NewTodo *)controller didFinishEnteringItem:(NSString *)item {
-    NSLog(@"%@",item);
+- (void)addItemViewController:(NewTodo *)controller todoTitle:(NSString *)todoTitle todoDescription:(NSString *)todoDescription {
+    NSLog(@"%@ \n %@",todoTitle, todoDescription);
+    [todoArray addObject:todoTitle];
+    [todoDescriptionArray addObject:todoDescription];
+    [self.table reloadData];
 }
 
 -(void)buttonPressed{

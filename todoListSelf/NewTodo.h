@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol NewTodoDelegate <NSObject>
 
-- (void)addItemViewController:(NewTodo *)controller didFinishEnteringItem:(NSString *)item;
+- (void)addItemViewController:(NewTodo *)controller todoTitle:(NSString *)todoTitle todoDescription:(NSString *)todoDescription;
 
 @end
 
