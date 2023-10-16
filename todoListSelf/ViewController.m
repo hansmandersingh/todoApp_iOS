@@ -162,7 +162,19 @@
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{
-    
+    NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+    if([todoArray objectAtIndex:sourceIndexPath.row]) {
+        id object = [todoArray objectAtIndex:sourceIndexPath.row];
+        id object2 = [todoDescriptionArray objectAtIndex:sourceIndexPath.row];
+        
+        [todoArray removeObjectAtIndex:sourceIndexPath.row];
+        [todoArray insertObject:object atIndex:destinationIndexPath.row];
+        
+        [todoDescriptionArray removeObjectAtIndex:sourceIndexPath.row];
+        [todoDescriptionArray insertObject:object2 atIndex:destinationIndexPath.row];
+        
+        [self.table reloadData];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
