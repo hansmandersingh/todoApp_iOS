@@ -25,8 +25,7 @@
     self.title = @"todoList";
     todoArray = [[NSMutableArray alloc]initWithObjects:@"ABC",@"XYZ", nil];
     todoDescriptionArray = [[NSMutableArray alloc] initWithObjects:@"First three letters", @"last three letters", nil];
-    sectionsArray = [[NSMutableArray alloc] initWithObjects:@"High", @"Medium", @"Low", nil];
-     
+    
     //textField to enter text for todo
     UITextField *textBox = [[UITextField alloc] init];
     textBox.backgroundColor = [UIColor lightGrayColor];
@@ -140,14 +139,6 @@
     cell.todoName.text = [todoArray objectAtIndex:indexPath.row];
     cell.todoDescription.text = [todoDescriptionArray objectAtIndex:indexPath.row];
     return cell;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return sectionsArray.count;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [sectionsArray objectAtIndex:section];
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section { 
