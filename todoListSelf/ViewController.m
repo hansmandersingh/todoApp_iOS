@@ -95,6 +95,10 @@
     NSLog(@"%@ \n %@",todoTitle, todoDescription);
     [todoArray addObject:todoTitle];
     [todoDescriptionArray addObject:todoDescription];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSIndexPath *bottomIndexPath = [NSIndexPath indexPathForRow:self->todoArray.count-1 inSection:0];
+        [self.table scrollToRowAtIndexPath:bottomIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    });
     [self.table reloadData];
 }
 
