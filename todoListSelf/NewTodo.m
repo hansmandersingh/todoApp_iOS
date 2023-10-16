@@ -67,6 +67,14 @@
         [self.delegate addItemViewController:self todoTitle:title todoDescription:description];
         
         [self dismissVC];
+    } else {
+        UIAlertController *emptyFieldAlert = [UIAlertController alertControllerWithTitle:@"Empty Fields" message:@"Forgot to enter title for todo" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        
+        [emptyFieldAlert addAction:okButton];
+        [self presentViewController:emptyFieldAlert animated:YES completion:nil];
     }
 }
 

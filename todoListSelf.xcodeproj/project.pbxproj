@@ -15,6 +15,7 @@
 		D621A3B92AD75784007FFEDE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D621A3B82AD75784007FFEDE /* main.m */; };
 		D621A3C12AD82AAE007FFEDE /* CustomTodo.m in Sources */ = {isa = PBXBuildFile; fileRef = D621A3C02AD82AAE007FFEDE /* CustomTodo.m */; };
 		D69F2CA12ADB72F2009EE272 /* NewTodo.m in Sources */ = {isa = PBXBuildFile; fileRef = D69F2CA02ADB72F2009EE272 /* NewTodo.m */; };
+		D6A7A8912ADCE9A300196C88 /* FullPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7A8902ADCE9A300196C88 /* FullPageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,8 @@
 		D621A3C02AD82AAE007FFEDE /* CustomTodo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTodo.m; sourceTree = "<group>"; };
 		D69F2C9F2ADB72F2009EE272 /* NewTodo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewTodo.h; sourceTree = "<group>"; };
 		D69F2CA02ADB72F2009EE272 /* NewTodo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewTodo.m; sourceTree = "<group>"; };
+		D6A7A88F2ADCE9A300196C88 /* FullPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FullPageViewController.h; sourceTree = "<group>"; };
+		D6A7A8902ADCE9A300196C88 /* FullPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FullPageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +82,8 @@
 				D621A3C02AD82AAE007FFEDE /* CustomTodo.m */,
 				D69F2C9F2ADB72F2009EE272 /* NewTodo.h */,
 				D69F2CA02ADB72F2009EE272 /* NewTodo.m */,
+				D6A7A88F2ADCE9A300196C88 /* FullPageViewController.h */,
+				D6A7A8902ADCE9A300196C88 /* FullPageViewController.m */,
 			);
 			path = todoListSelf;
 			sourceTree = "<group>";
@@ -155,6 +160,7 @@
 				D621A3C12AD82AAE007FFEDE /* CustomTodo.m in Sources */,
 				D621A3AE2AD75782007FFEDE /* ViewController.m in Sources */,
 				D621A3A82AD75782007FFEDE /* AppDelegate.m in Sources */,
+				D6A7A8912ADCE9A300196C88 /* FullPageViewController.m in Sources */,
 				D621A3B92AD75784007FFEDE /* main.m in Sources */,
 				D69F2CA12ADB72F2009EE272 /* NewTodo.m in Sources */,
 				D621A3AB2AD75782007FFEDE /* SceneDelegate.m in Sources */,

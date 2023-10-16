@@ -23,12 +23,17 @@
         self.todoDescription.translatesAutoresizingMaskIntoConstraints = NO;
         [self.contentView addSubview:self.todoDescription];
         
-        [self todoNameConstraints:_todoName withDescription:_todoDescription];
+        self.fullPageButton = [[UIButton alloc] init];
+        [self.fullPageButton setImage:[UIImage systemImageNamed:@"arrow.right"] forState:UIControlStateNormal];
+        self.fullPageButton.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.contentView addSubview:self.fullPageButton];
+        
+        [self todoNameConstraints:_todoName withDescription:_todoDescription withButton:_fullPageButton];
     }
     return self;
 }
 
--(void)todoNameConstraints:(UILabel *)todoName withDescription: (UILabel *)todoDescription {
+-(void)todoNameConstraints:(UILabel *)todoName withDescription: (UILabel *)todoDescription withButton:(UIButton *)fullPageButton {
     [todoName.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:10].active = YES;
     [todoName.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:5].active = YES;
     [todoName.heightAnchor constraintEqualToConstant:30].active = YES;
@@ -36,6 +41,10 @@
     [todoDescription.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:10].active = YES;
     [todoDescription.topAnchor constraintEqualToAnchor:self.todoName.bottomAnchor constant:5].active = YES;
     [todoDescription.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor constant:-5].active = YES;
+    
+    [fullPageButton.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor constant:-10].active = YES;
+    [fullPageButton.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:5].active = YES;
+    [fullPageButton.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor constant:-5].active = YES;
 }
 
 @end

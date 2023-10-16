@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, retain) UILabel *todoName;
 @property (nonatomic,retain) UILabel *todoDescription;
+@property (nonatomic, retain) UIButton *fullPageButton;
 
 @end
 

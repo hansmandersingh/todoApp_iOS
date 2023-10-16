@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "NewTodo.h"
+#import "FullPageViewController.h"
 
 @interface ViewController : UIViewController  {
     NSMutableArray *todoArray;
