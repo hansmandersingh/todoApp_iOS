@@ -11,6 +11,7 @@
 @interface ViewController : UIViewController  {
     NSMutableArray *todoArray;
     NSMutableArray *todoDescriptionArray;
+    NSMutableArray *sectionsArray;
 }
 
 @end

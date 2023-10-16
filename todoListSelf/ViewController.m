@@ -25,7 +25,8 @@
     self.title = @"todoList";
     todoArray = [[NSMutableArray alloc]initWithObjects:@"ABC",@"XYZ", nil];
     todoDescriptionArray = [[NSMutableArray alloc] initWithObjects:@"First three letters", @"last three letters", nil];
-    
+    sectionsArray = [[NSMutableArray alloc] initWithObjects:@"High", @"Medium", @"Low", nil];
+     
     //textField to enter text for todo
     UITextField *textBox = [[UITextField alloc] init];
     textBox.backgroundColor = [UIColor lightGrayColor];
@@ -92,7 +93,6 @@
 }
 
 - (void)addItemViewController:(NewTodo *)controller todoTitle:(NSString *)todoTitle todoDescription:(NSString *)todoDescription {
-    NSLog(@"%@ \n %@",todoTitle, todoDescription);
     [todoArray addObject:todoTitle];
     [todoDescriptionArray addObject:todoDescription];
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -143,15 +143,15 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return sectionsArray.count;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return [sectionsArray objectAtIndex:section];
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section { 
     return todoArray.count;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%ld", (long)indexPath.row);
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -182,7 +182,7 @@
     }];
     
     UIContextualAction *editAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"Edit" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
-            NSLog(@"------------------>%@",sourceView);
+            //NSLog(@"------------------>%@",sourceView);
         UIAlertController *newText = [UIAlertController alertControllerWithTitle:@"Change Todo" message:@"" preferredStyle:UIAlertControllerStyleAlert];
         [newText addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
             textField.text = [self->todoArray objectAtIndex:indexPath.row];
