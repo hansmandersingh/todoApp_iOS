@@ -17,18 +17,26 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = self.addTitle;
+    
+    self.descriptionView = [[UITextView alloc] init];
+    _descriptionView.text = self.addDescription;
+    _descriptionView.font = [UIFont systemFontOfSize:20];
+    [_descriptionView setEditable:NO];
+    _descriptionView.textColor = [UIColor blackColor];
+    _descriptionView.backgroundColor = [UIColor whiteColor];
+    _descriptionView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:_descriptionView];
     // Do any additional setup after loading the view.
+    
+    [self setupConstraints];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)setupConstraints {
+    [_descriptionView.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:17].active = YES;
+    [_descriptionView.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor constant:-17].active = YES;
+    [_descriptionView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:10].active = YES;
+    [_descriptionView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor constant:-10].active = YES;
 }
-*/
 
 
 @end

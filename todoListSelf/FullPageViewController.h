@@ -12,7 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FullPageViewController : UIViewController
 
 @property (nonatomic, retain) NSString *addTitle;
-
+@property (nonatomic, retain) NSString *addDescription;
+@property (nonatomic, retain) UITextView *descriptionView;
 
 @end
 

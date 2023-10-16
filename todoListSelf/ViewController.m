@@ -162,7 +162,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{
-    NSMutableArray *tempArray = [[NSMutableArray alloc] init];
     if([todoArray objectAtIndex:sourceIndexPath.row]) {
         id object = [todoArray objectAtIndex:sourceIndexPath.row];
         id object2 = [todoDescriptionArray objectAtIndex:sourceIndexPath.row];
@@ -180,6 +179,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     FullPageViewController *fullPage = [[FullPageViewController alloc] init];
     fullPage.addTitle = [todoArray objectAtIndex:indexPath.row];
+    fullPage.addDescription = [todoDescriptionArray objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:fullPage animated:YES];
 }
 
