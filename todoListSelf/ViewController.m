@@ -13,6 +13,7 @@
 
 @property (nonatomic) UITableView *table;
 @property (nonatomic, retain) UIButton * addButton;
+@property (nonatomic) UISearchBar *searchBar;
 
 @end
 
